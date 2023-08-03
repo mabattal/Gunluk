@@ -10,6 +10,7 @@ namespace BusinessLayer.Abstract
     public interface INotService
     {
         void NotInsert(Not not);
+        void NotUpdate(Not not);
         void NotDelete(Not not);
         List<Not> GetListAll();
         Not GetById(int id);

@@ -8,29 +8,29 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Concrete
 {
-    public class NotManager : INotService
+    public class YazarManager : IYazarService
     {
-        public Not GetById(int id)
+        public Yazar GetById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public List<Not> GetListAll()
+        public List<Yazar> GetListAll()
         {
             throw new NotImplementedException();
         }
 
-        public void NotDelete(Not not)
+        public void YazarDelete(Not not)
         {
             throw new NotImplementedException();
         }
 
-        public void NotInsert(Not not)
+        public void YazarInsert(Not not)
         {
             throw new NotImplementedException();
         }
 
-        public void NotUpdate(Not not)
+        public void YazarUpdate(Not not)
         {
             throw new NotImplementedException();
         }
