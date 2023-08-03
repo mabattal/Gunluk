@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Abstract;
+using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -10,29 +11,36 @@ namespace BusinessLayer.Concrete
 {
     public class NotManager : INotService
     {
+        EfNotRepository efNotRepository;
+
+        public NotManager()
+        {
+            efNotRepository = new EfNotRepository();
+        }
+
         public Not GetById(int id)
         {
-            throw new NotImplementedException();
+            return efNotRepository.GetByID(id);
         }
 
         public List<Not> GetListAll()
         {
-            throw new NotImplementedException();
+            return efNotRepository.GetListAll();
         }
 
         public void NotDelete(Not not)
         {
-            throw new NotImplementedException();
+            efNotRepository.Delete(not);
         }
 
         public void NotInsert(Not not)
         {
-            throw new NotImplementedException();
+            efNotRepository.Insert(not);
         }
 
         public void NotUpdate(Not not)
         {
-            throw new NotImplementedException();
+            efNotRepository.Update(not);
         }
     }
 }
