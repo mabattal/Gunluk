@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EntityLayer.Concrete;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,7 @@ namespace DataAccessLayer.Concrete
         {
             optionsBuilder.UseSqlServer("server=DESKTOP-73I52K7; database=CoreGunluk; integrated security=True;");
         }
+
+        public DbSet<Not> Nots { get; set; }
     }
 }
