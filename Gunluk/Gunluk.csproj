@@ -7,6 +7,77 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\Ön Yüz Tema\about.html" />
+    <None Include="wwwroot\Ön Yüz Tema\blog1.html" />
+    <None Include="wwwroot\Ön Yüz Tema\blog2.html" />
+    <None Include="wwwroot\Ön Yüz Tema\blog3.html" />
+    <None Include="wwwroot\Ön Yüz Tema\contact.html" />
+    <None Include="wwwroot\Ön Yüz Tema\css\bootstrap.css" />
+    <None Include="wwwroot\Ön Yüz Tema\css\contact.css" />
+    <None Include="wwwroot\Ön Yüz Tema\css\fontawesome-all.css" />
+    <None Include="wwwroot\Ön Yüz Tema\css\jquery.desoslide.css" />
+    <None Include="wwwroot\Ön Yüz Tema\css\single.css" />
+    <None Include="wwwroot\Ön Yüz Tema\css\style.css" />
+    <None Include="wwwroot\Ön Yüz Tema\images\1.jpg" />
+    <None Include="wwwroot\Ön Yüz Tema\images\2.jpg" />
+    <None Include="wwwroot\Ön Yüz Tema\images\3.jpg" />
+    <None Include="wwwroot\Ön Yüz Tema\images\4.jpg" />
+    <None Include="wwwroot\Ön Yüz Tema\images\5.jpg" />
+    <None Include="wwwroot\Ön Yüz Tema\images\6.jpg" />
+    <None Include="wwwroot\Ön Yüz Tema\images\7.jpg" />
+    <None Include="wwwroot\Ön Yüz Tema\images\8.jpg" />
+    <None Include="wwwroot\Ön Yüz Tema\images\b1.jpg" />
+    <None Include="wwwroot\Ön Yüz Tema\images\b2.jpg" />
+    <None Include="wwwroot\Ön Yüz Tema\images\b3.jpg" />
+    <None Include="wwwroot\Ön Yüz Tema\images\b4.jpg" />
+    <None Include="wwwroot\Ön Yüz Tema\images\b5.jpg" />
+    <None Include="wwwroot\Ön Yüz Tema\images\banner1.jpg" />
+    <None Include="wwwroot\Ön Yüz Tema\images\banner2.jpg" />
+    <None Include="wwwroot\Ön Yüz Tema\images\banner3.jpg" />
+    <None Include="wwwroot\Ön Yüz Tema\images\banner4.jpg" />
+    <None Include="wwwroot\Ön Yüz Tema\images\banner5.jpg" />
+    <None Include="wwwroot\Ön Yüz Tema\images\left.png" />
+    <None Include="wwwroot\Ön Yüz Tema\images\m1.jpg" />
+    <None Include="wwwroot\Ön Yüz Tema\images\m2.jpg" />
+    <None Include="wwwroot\Ön Yüz Tema\images\m3.jpg" />
+    <None Include="wwwroot\Ön Yüz Tema\images\m4.jpg" />
+    <None Include="wwwroot\Ön Yüz Tema\images\right.png" />
+    <None Include="wwwroot\Ön Yüz Tema\images\t1.jpg" />
+    <None Include="wwwroot\Ön Yüz Tema\images\t2.jpg" />
+    <None Include="wwwroot\Ön Yüz Tema\images\t3.jpg" />
+    <None Include="wwwroot\Ön Yüz Tema\images\t4.jpg" />
+    <None Include="wwwroot\Ön Yüz Tema\images\Thumbs.db" />
+    <None Include="wwwroot\Ön Yüz Tema\images\top_up.png" />
+    <None Include="wwwroot\Ön Yüz Tema\index.html" />
+    <None Include="wwwroot\Ön Yüz Tema\js\bootstrap.js" />
+    <None Include="wwwroot\Ön Yüz Tema\js\easing.js" />
+    <None Include="wwwroot\Ön Yüz Tema\js\jquery-2.2.3.min.js" />
+    <None Include="wwwroot\Ön Yüz Tema\js\jquery.desoslide.js" />
+    <None Include="wwwroot\Ön Yüz Tema\js\jquery.flexisel.js" />
+    <None Include="wwwroot\Ön Yüz Tema\js\modernizr.custom.min.js" />
+    <None Include="wwwroot\Ön Yüz Tema\js\move-top.js" />
+    <None Include="wwwroot\Ön Yüz Tema\login.html" />
+    <None Include="wwwroot\Ön Yüz Tema\register.html" />
+    <None Include="wwwroot\Ön Yüz Tema\single.html" />
+    <None Include="wwwroot\Ön Yüz Tema\w3layouts-license.txt" />
+    <None Include="wwwroot\Ön Yüz Tema\webfonts\fa-brands-400.eot" />
+    <None Include="wwwroot\Ön Yüz Tema\webfonts\fa-brands-400.svg" />
+    <None Include="wwwroot\Ön Yüz Tema\webfonts\fa-brands-400.ttf" />
+    <None Include="wwwroot\Ön Yüz Tema\webfonts\fa-brands-400.woff" />
+    <None Include="wwwroot\Ön Yüz Tema\webfonts\fa-brands-400.woff2" />
+    <None Include="wwwroot\Ön Yüz Tema\webfonts\fa-regular-400.eot" />
+    <None Include="wwwroot\Ön Yüz Tema\webfonts\fa-regular-400.svg" />
+    <None Include="wwwroot\Ön Yüz Tema\webfonts\fa-regular-400.ttf" />
+    <None Include="wwwroot\Ön Yüz Tema\webfonts\fa-regular-400.woff" />
+    <None Include="wwwroot\Ön Yüz Tema\webfonts\fa-regular-400.woff2" />
+    <None Include="wwwroot\Ön Yüz Tema\webfonts\fa-solid-900.eot" />
+    <None Include="wwwroot\Ön Yüz Tema\webfonts\fa-solid-900.svg" />
+    <None Include="wwwroot\Ön Yüz Tema\webfonts\fa-solid-900.ttf" />
+    <None Include="wwwroot\Ön Yüz Tema\webfonts\fa-solid-900.woff" />
+    <None Include="wwwroot\Ön Yüz Tema\webfonts\fa-solid-900.woff2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.9">
       <PrivateAssets>all</PrivateAssets>
