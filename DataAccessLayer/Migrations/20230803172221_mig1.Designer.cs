@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20230803133435_mig1")]
+    [Migration("20230803172221_mig1")]
     partial class mig1
     {
         /// <inheritdoc />
@@ -34,10 +34,12 @@ namespace DataAccessLayer.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Konu")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("Varchar");
 
                     b.Property<string>("Metin")
+                        .IsRequired()
                         .HasMaxLength(2000)
                         .HasColumnType("Varchar");
 
@@ -47,9 +49,53 @@ namespace DataAccessLayer.Migrations
                     b.Property<DateTime>("Tarih")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("YazarId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("YazarId");
+
                     b.ToTable("Nots");
+                });
+
+            modelBuilder.Entity("EntityLayer.Concrete.Yazar", b =>
+                {
+                    b.Property<int>("YazarId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("YazarId"));
+
+                    b.Property<string>("Ad")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("Varchar");
+
+                    b.Property<string>("Soyad")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("Varchar");
+
+                    b.HasKey("YazarId");
+
+                    b.ToTable("Yazar");
+                });
+
+            modelBuilder.Entity("EntityLayer.Concrete.Not", b =>
+                {
+                    b.HasOne("EntityLayer.Concrete.Yazar", "Yazar")
+                        .WithMany("Nots")
+                        .HasForeignKey("YazarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Yazar");
+                });
+
+            modelBuilder.Entity("EntityLayer.Concrete.Yazar", b =>
+                {
+                    b.Navigation("Nots");
                 });
 #pragma warning restore 612, 618
         }

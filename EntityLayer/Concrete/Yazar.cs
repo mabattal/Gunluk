@@ -8,29 +8,19 @@ using System.Threading.Tasks;
 
 namespace EntityLayer.Concrete
 {
-    public class Not
+    public class Yazar
     {
         [Key]
-        public int Id { get; set; }
+        public int YazarId { get; set; }
 
         [Column(TypeName = "Varchar")]
         [StringLength(50)]
-        public string Konu { get; set; }
+        public string Ad { get; set; }
 
         [Column(TypeName = "Varchar")]
-        [StringLength(2000)]
-        public string Metin { get; set; }
-        public DateTime Tarih { get; set; } = DateTime.Now;
-        public bool NotSil { get; set; } = false;
+        [StringLength(50)]
+        public string Soyad { get; set; }
 
-        public int YazarId { get; set; }
-        public Yazar Yazar { get; set; }
-
+        public List<Not> Nots { get; set; }
     }
-
-
-
-
-
-
 }
