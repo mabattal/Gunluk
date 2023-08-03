@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Abstract;
+using DataAccessLayer.Abstract;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using System;
@@ -11,36 +12,36 @@ namespace BusinessLayer.Concrete
 {
     public class NotManager : INotService
     {
-        EfNotRepository efNotRepository;
+        INotDal _notDal;
 
-        public NotManager()
+        public NotManager(INotDal notDal)
         {
-            efNotRepository = new EfNotRepository();
+            _notDal = notDal;
         }
 
         public Not GetById(int id)
         {
-            return efNotRepository.GetByID(id);
+            return _notDal.GetByID(id);
         }
 
         public List<Not> GetListAll()
         {
-            return efNotRepository.GetListAll();
+            return _notDal.GetListAll();
         }
 
         public void NotDelete(Not not)
         {
-            efNotRepository.Delete(not);
+            _notDal.Delete(not);
         }
 
         public void NotInsert(Not not)
         {
-            efNotRepository.Insert(not);
+            _notDal.Insert(not);
         }
 
         public void NotUpdate(Not not)
         {
-            efNotRepository.Update(not);
+            _notDal.Update(not);
         }
     }
 }
