@@ -14,5 +14,6 @@ namespace BusinessLayer.Abstract
         void NotDelete(Not not);
         List<Not> GetListAll();
         Not GetById(int id);
+        List<Not> GetNotListWithYazar();
     }
 }

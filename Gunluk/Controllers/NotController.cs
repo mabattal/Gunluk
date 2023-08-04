@@ -9,7 +9,7 @@ namespace Gunluk.Controllers
         NotManager notManager = new NotManager(new EfNotRepository());
         public IActionResult Index()
         {
-            var values = notManager.GetListAll();
+            var values = notManager.GetNotListWithYazar();
             return View(values);
         }
     }

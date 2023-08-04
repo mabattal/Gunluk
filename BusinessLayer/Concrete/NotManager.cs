@@ -29,6 +29,11 @@ namespace BusinessLayer.Concrete
             return _notDal.GetListAll();
         }
 
+        public List<Not> GetNotListWithYazar()
+        {
+            return _notDal.GetListWithYazar();
+        }
+
         public void NotDelete(Not not)
         {
             _notDal.Delete(not);

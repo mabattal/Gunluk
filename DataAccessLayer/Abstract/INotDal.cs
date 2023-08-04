@@ -9,5 +9,6 @@ namespace DataAccessLayer.Abstract
 {
     public interface INotDal : IGenericDal<Not>
     {
+        List<Not> GetListWithYazar(); 
     }
 }
