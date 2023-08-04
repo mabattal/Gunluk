@@ -9,9 +9,9 @@ namespace BusinessLayer.Abstract
 {
     public interface IYazarService
     {
-        void YazarInsert(Not not);
-        void YazarUpdate(Not not);
-        void YazarDelete(Not not);
+        void YazarInsert(Yazar yazar);
+        void YazarUpdate(Yazar yazar);
+        void YazarDelete(Yazar yazar);
         List<Yazar> GetListAll();
         Yazar GetById(int id);
     }

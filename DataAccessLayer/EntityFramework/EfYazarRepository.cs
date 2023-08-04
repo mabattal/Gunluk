@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.EntityFramework
 {
-    internal class EfYazarRepository : GenericRepository<Yazar>, IYazarDal
+    public class EfYazarRepository : GenericRepository<Yazar>, IYazarDal
     {
     }
 }

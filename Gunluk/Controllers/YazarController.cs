@@ -4,12 +4,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Gunluk.Controllers
 {
-    public class Not : Controller
+    public class YazarController : Controller
     {
-        NotManager notManager = new NotManager(new EfNotRepository());
+        YazarManager yazarManager = new YazarManager(new EfYazarRepository());
         public IActionResult Index()
         {
-            var values = notManager.GetListAll();
+            var values = yazarManager.GetListAll();
             return View(values);
         }
     }

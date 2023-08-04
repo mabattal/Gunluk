@@ -1,5 +1,5 @@
 ﻿@using EntityLayer.Concrete
-@model List<Not>
+@model List<Yazar>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/YazarLayout.cshtml";
@@ -10,26 +10,27 @@
 <link href="~/lib/bootstrap/dist/css/bootstrap.rtl.css" rel="stylesheet" />
 <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
 
+<h2>Yazarlar</h2>
+<br />
 <table class="table table-bordered">
     <tr>
         <th>#</th>
-        <th>Başlık</th>
-        <th>Metin</th>
-        <th>Tarih</th>
-        <th>Silindi mi?</th>
-        <th>Detaylar</th>
+        <th>Ad</th>
+        <th>Soyad</th>
+        <th>Notlar</th>
+        <th>Güncelle</th>
         <th>Sil</th>
     </tr>
     @foreach (var item in Model)
     {
         <tr>
-            <td>@item.Id</td>
-            <td>@item.Konu</td>
-            <td>@item.Metin</td>
-            <td>@item.Tarih</td>
-            <td>@item.NotSil</td>
-            <td><a href="#" class="btn btn-primary">Detay</a></td>
+            <td>@item.YazarId</td>
+            <td>@item.Ad</td>
+            <td>@item.Soyad</td>
+            <td><a href="#" class="btn btn-warning">Notlar</a></td>
+            <td><a href="#" class="btn btn-primary">Güncelle</a></td>
             <td><a href="#" class="btn btn-danger">Sil</a></td>
         </tr>
     }
 </table>
+<a href="#" class="btn btn-success">Ekle</a>

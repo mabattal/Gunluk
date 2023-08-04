@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Abstract;
+using DataAccessLayer.Abstract;
 using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -10,29 +11,35 @@ namespace BusinessLayer.Concrete
 {
     public class YazarManager : IYazarService
     {
+        IYazarDal _yazarDal;
+
+        public YazarManager(IYazarDal yazarDal)
+        {
+            _yazarDal = yazarDal;
+        }
         public Yazar GetById(int id)
         {
-            throw new NotImplementedException();
+            return _yazarDal.GetByID(id);
         }
 
         public List<Yazar> GetListAll()
         {
-            throw new NotImplementedException();
+            return _yazarDal.GetListAll();
         }
 
-        public void YazarDelete(Not not)
+        public void YazarDelete(Yazar yazar)
         {
-            throw new NotImplementedException();
+            _yazarDal.Delete(yazar);
         }
 
-        public void YazarInsert(Not not)
+        public void YazarInsert(Yazar yazar)
         {
-            throw new NotImplementedException();
+            _yazarDal.Insert(yazar);
         }
 
-        public void YazarUpdate(Not not)
+        public void YazarUpdate(Yazar yazar)
         {
-            throw new NotImplementedException();
+            _yazarDal.Update(yazar);
         }
     }
 }
