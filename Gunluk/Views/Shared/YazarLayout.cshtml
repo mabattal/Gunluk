@@ -54,31 +54,9 @@
         <!-- partial -->
         <div class="container-fluid page-body-wrapper">
             <!-- partial:partials/_sidebar.html -->
-            <nav class="sidebar sidebar-offcanvas" id="sidebar">
-                <ul class="nav">
-                    <li class="nav-item sidebar-actions">
-                        <span class="nav-link">
-                            
-                            <button class="btn btn-block btn-lg btn-gradient-primary mt-4">+ Not Ekle</button>
+            
+            @await Html.PartialAsync("NavPartial")
 
-                        </span>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Not/Index">
-                            <span class="menu-title">Notlar</span>
-                            <i class="mdi mdi-home menu-icon"></i>
-                        </a>
-                    </li>
-                    
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Yazar/Index">
-                            <span class="menu-title">Yazarlar</span>
-                            <i class="mdi mdi-contacts menu-icon"></i>
-                        </a>
-                    </li>                   
-                    
-                </ul>
-            </nav>
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
