@@ -21,5 +21,10 @@ namespace Gunluk.Controllers
             var values = notManager.GetNotById(id);
             return View(values);
         }
+        public IActionResult YazaraGoreNotListele(int id)
+        {
+            var values = notManager.GetNotListByWriter(id);
+            return View(values);
+        }
     }
 }

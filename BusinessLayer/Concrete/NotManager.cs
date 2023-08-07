@@ -34,6 +34,11 @@ namespace BusinessLayer.Concrete
             return _notDal.GetListAll(x => x.Id == id);
         }
 
+        public List<Not> GetNotListByWriter(int id)
+        {
+            return _notDal.GetListAll(x =>x.YazarId == id);
+        }
+
         public List<Not> GetNotListWithYazar()
         {
             return _notDal.GetListWithYazar();
