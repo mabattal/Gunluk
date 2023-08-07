@@ -21,6 +21,14 @@ namespace EntityLayer.Concrete
         [StringLength(50)]
         public string Soyad { get; set; }
 
+        [Column(TypeName = "Varchar")]
+        [StringLength(50)]
+        public string Mail { get; set; }
+
+        [Column(TypeName = "Varchar")]
+        [StringLength(50)]
+        public string Sifre { get; set; }
+
         public List<Not> Nots { get; set; }
     }
 }
