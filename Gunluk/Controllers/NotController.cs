@@ -15,5 +15,11 @@ namespace Gunluk.Controllers
 
             return View(values);
         }
+
+        public IActionResult NotOku(int id)
+        {
+            var values = notManager.GetNotById(id);
+            return View(values);
+        }
     }
 }

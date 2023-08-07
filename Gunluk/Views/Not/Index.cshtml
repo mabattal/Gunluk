@@ -5,10 +5,6 @@
     Layout = "~/Views/Shared/YazarLayout.cshtml";
 }
 
-<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-<link href="~/lib/bootstrap/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
-<link href="~/lib/bootstrap/dist/css/bootstrap.rtl.css" rel="stylesheet" />
-<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
 
 <table class="table table-bordered">
     <tr>
@@ -26,7 +22,7 @@
             <td>@item.Konu</td>
             <td>@(((DateTime)item.Tarih).ToString("dd-MMM-yyyy"))</td>
             <td>@item.Yazar.Ad @item.Yazar.Soyad</td>
-            <td><a href="/Not/NotDetay/@item.Id" class="btn btn-primary">Detay</a></td>
+            <td><a href="/Not/NotOku/@item.Id" class="btn btn-primary">Detay</a></td>
             <td><a href="/Not/NotSil/@item.Id" class="btn btn-danger">Sil</a></td>
         </tr>
     }
