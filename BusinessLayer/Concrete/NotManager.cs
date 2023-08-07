@@ -39,17 +39,17 @@ namespace BusinessLayer.Concrete
             return _notDal.GetListWithYazar();
         }
 
-        public void NotDelete(Not not)
+        public void TDelete(Not not)
         {
             _notDal.Delete(not);
         }
 
-        public void NotInsert(Not not)
+        public void TInsert(Not not)
         {
             _notDal.Insert(not);
         }
 
-        public void NotUpdate(Not not)
+        public void TUpdate(Not not)
         {
             _notDal.Update(not);
         }

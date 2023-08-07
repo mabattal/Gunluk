@@ -27,17 +27,17 @@ namespace BusinessLayer.Concrete
             return _yazarDal.GetListAll();
         }
 
-        public void YazarDelete(Yazar yazar)
+        public void TDelete(Yazar yazar)
         {
             _yazarDal.Delete(yazar);
         }
 
-        public void YazarInsert(Yazar yazar)
+        public void TInsert(Yazar yazar)
         {
             _yazarDal.Insert(yazar);
         }
 
-        public void YazarUpdate(Yazar yazar)
+        public void TUpdate(Yazar yazar)
         {
             _yazarDal.Update(yazar);
         }

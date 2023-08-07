@@ -7,12 +7,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Abstract
 {
-    public interface IYazarService
+    public interface IYazarService : IGenericService<Yazar>
     {
-        void YazarInsert(Yazar yazar);
-        void YazarUpdate(Yazar yazar);
-        void YazarDelete(Yazar yazar);
-        List<Yazar> GetListAll();
-        Yazar GetById(int id);
     }
 }

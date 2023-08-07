@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Abstract
 {
-    public interface INotService : IGenericService<Not>
+    public interface IGenericService<T>
     {
-        List<Not> GetNotListWithYazar();
+        void TInsert(T t);
+        void TUpdate(T t);
+        void TDelete(T t);
+        List<T> GetListAll();
+        T GetById(int id);
     }
 }
