@@ -14,10 +14,8 @@
     <tr>
         <th>#</th>
         <th>Başlık</th>
-        <th>Metin</th>
         <th>Tarih</th>
         <th>Yazar</th>
-        <th>Silindi mi?</th>
         <th>Detaylar</th>
         <th>Sil</th>
     </tr>
@@ -26,12 +24,10 @@
         <tr>
             <td>@item.Id</td>
             <td>@item.Konu</td>
-            <td>@item.Metin</td>
-            <td>@item.Tarih</td>
+            <td>@(((DateTime)item.Tarih).ToString("dd-MMM-yyyy"))</td>
             <td>@item.Yazar.Ad @item.Yazar.Soyad</td>
-            <td>@item.NotSil</td>
-            <td><a href="#" class="btn btn-primary">Detay</a></td>
-            <td><a href="#" class="btn btn-danger">Sil</a></td>
+            <td><a href="/Not/NotDetay/@item.Id" class="btn btn-primary">Detay</a></td>
+            <td><a href="/Not/NotSil/@item.Id" class="btn btn-danger">Sil</a></td>
         </tr>
     }
 </table>

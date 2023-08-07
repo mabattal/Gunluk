@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
+using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Gunluk.Controllers
@@ -9,7 +10,9 @@ namespace Gunluk.Controllers
         NotManager notManager = new NotManager(new EfNotRepository());
         public IActionResult Index()
         {
-            var values = notManager.GetNotListWithYazar();
+            List<Not> notListesi = notManager.GetNotListWithYazar();
+            var values = notListesi.Where(not => not.NotSil == false).ToList();
+
             return View(values);
         }
     }
