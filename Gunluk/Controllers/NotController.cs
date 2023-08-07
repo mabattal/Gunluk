@@ -23,7 +23,8 @@ namespace Gunluk.Controllers
         }
         public IActionResult YazaraGoreNotListele(int id)
         {
-            var values = notManager.GetNotListByWriter(id);
+            List<Not> notListesi = notManager.GetNotListByWriter(id);
+            var values = notListesi.Where(not => not.NotSil == false).ToList();
             return View(values);
         }
     }
