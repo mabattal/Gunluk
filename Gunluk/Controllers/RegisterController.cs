@@ -1,6 +1,8 @@
 ﻿using BusinessLayer.Concrete;
+using BusinessLayer.ValidationRules;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Gunluk.Controllers
@@ -18,8 +20,22 @@ namespace Gunluk.Controllers
         [HttpPost]
         public IActionResult Index(Yazar yazar)
         {
-            yazarManager.TInsert(yazar);
-            return RedirectToAction("Index", "Not");
+            YazarValidator yazarValidator = new YazarValidator();
+            ValidationResult results = yazarValidator.Validate(yazar);
+            if(results.IsValid)
+            {
+                yazarManager.TInsert(yazar);
+                return RedirectToAction("Index", "Not");
+            }
+            else
+            {
+                foreach (var item in results.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+            return View();
+            
         }
     }
 }

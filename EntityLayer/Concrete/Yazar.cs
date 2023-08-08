@@ -15,21 +15,21 @@ namespace EntityLayer.Concrete
 
         [Column(TypeName = "Varchar")]
         [StringLength(50)]
-        public string Ad { get; set; }
+        public string? Ad { get; set; }
 
         [Column(TypeName = "Varchar")]
         [StringLength(50)]
-        public string Soyad { get; set; }
+        public string? Soyad { get; set; }
 
         [Column(TypeName = "Varchar")]
         [StringLength(50)]
-        public string Mail { get; set; }
+        public string? Mail { get; set; }
 
         [Column(TypeName = "Varchar")]
         [StringLength(50)]
-        public string Sifre { get; set; }
+        public string? Sifre { get; set; }
         public bool YazarSil { get; set; } = false;
 
-        public List<Not> Nots { get; set; }
+        public List<Not>? Nots { get; set; }
     }
 }

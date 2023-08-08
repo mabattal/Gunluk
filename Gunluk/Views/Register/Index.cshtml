@@ -1,4 +1,4 @@
-﻿
+﻿@model EntityLayer.Concrete.Yazar
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -63,27 +63,32 @@
 
 <div class="content">
     <h1>Kayıt Ol</h1>
-    <form method="post" class="registration-form">
+    @using (Html.BeginForm("Index", "Register", FormMethod.Post))
+    {
         <div class="form-group">
             <label for="ad">Ad:</label>
-            <input type="text" class="form-control" id="ad" name="Ad" required>
+            @Html.TextBoxFor(x => x.Ad)
+            @Html.ValidationMessageFor(x => x.Ad)
         </div>
         <div class="form-group">
             <label for="soyad">Soyad:</label>
-            <input type="text" class="form-control" id="soyad" name="Soyad" required>
+            @Html.TextBoxFor(x => x.Soyad)
+            @Html.ValidationMessageFor(x => x.Soyad)
         </div>
         <div class="form-group">
             <label for="email">E-posta:</label>
-            <input type="email" class="form-control" id="email" name="Mail" required>
+            @Html.TextBoxFor(x => x.Mail)
+            @Html.ValidationMessageFor(x => x.Mail)
         </div>
         <div class="form-group">
             <label for="sifre">Şifre:</label>
-            <input type="password" class="form-control" id="sifre" name="Sifre" required>
+            @Html.TextBoxFor(x => x.Sifre)
+            @Html.ValidationMessageFor(x => x.Sifre)
         </div>
         <div class="text-center">
             <button type="submit" id="kaydet" class="btn btn-register">Kayıt Ol</button>
         </div>
-    </form>
+    }
 </div>
 
 
