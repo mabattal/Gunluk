@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1 class="mb-4 text-center">Kayıt Ol</h1>
+<h3 class="mb-4 text-center">Kayıt Ol</h3>
 <div class="row justify-content-center">
     <div class="col-md-4">
         @using (Html.BeginForm("Index", "Register", FormMethod.Post))
@@ -41,17 +41,3 @@
         }
     </div>
 </div>
-
-<script>
-    $(document).ready(function () {
-        $("#showPassword").on('click', function () {
-            var passwordInput = $("#sifre");
-            if (passwordInput.attr("type") === "password") {
-                passwordInput.attr("type", "text");
-            } else {
-                passwordInput.attr("type", "password");
-            }
-        });
-    });
-</script>
-
