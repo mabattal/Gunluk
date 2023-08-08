@@ -10,6 +10,6 @@ namespace BusinessLayer.Abstract
     public interface INotService : IGenericService<Not>
     {
         List<Not> GetNotListWithYazar();
-        List<Not> GetNotListByWriter(int id);
+        List<Not> GetNotListByYazar(int id);
     }
 }
