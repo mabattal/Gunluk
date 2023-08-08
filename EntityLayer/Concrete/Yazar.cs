@@ -28,6 +28,7 @@ namespace EntityLayer.Concrete
         [Column(TypeName = "Varchar")]
         [StringLength(50)]
         public string Sifre { get; set; }
+        public bool YazarSil { get; set; } = false;
 
         public List<Not> Nots { get; set; }
     }
