@@ -1,8 +1,10 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Gunluk.Controllers
 {
@@ -17,19 +19,40 @@ namespace Gunluk.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(Yazar yazar)
+        public async Task<IActionResult> Index(Yazar yazar)
         {
             List<Yazar> yazarListesi = yazarManager.GetListAll();
             var dataValue = yazarListesi.Where(x => x.YazarSil == false && x.Mail == yazar.Mail && x.Sifre == yazar.Sifre).ToList();
             if(dataValue != null)
             {
-                HttpContext.Session.SetString("username", yazar.Mail);
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, yazar.Mail)
+                };
+
+                var userIdentity = new ClaimsIdentity(claims, "a");
+                ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(userIdentity);
+                await HttpContext.SignInAsync(claimsPrincipal);
+
                 return RedirectToAction("Index", "Not");
             }
             else
             {
                 return View();
-            }            
+            }
         }
     }
 }
+
+
+//List<Yazar> yazarListesi = yazarManager.GetListAll();
+//var dataValue = yazarListesi.Where(x => x.YazarSil == false && x.Mail == yazar.Mail && x.Sifre == yazar.Sifre).ToList();
+//if (dataValue != null)
+//{
+//    HttpContext.Session.SetString("username", yazar.Mail);
+//    return RedirectToAction("Index", "Not");
+//}
+//else
+//{
+//    return View();
+//}
