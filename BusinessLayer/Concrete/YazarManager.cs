@@ -17,7 +17,7 @@ namespace BusinessLayer.Concrete
         {
             _yazarDal = yazarDal;
         }
-        public Yazar GetById(int id)
+        public Yazar TGetById(int id)
         {
             return _yazarDal.GetByID(id);
         }

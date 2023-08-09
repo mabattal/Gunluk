@@ -19,7 +19,7 @@ namespace BusinessLayer.Concrete
             _notDal = notDal;
         }
 
-        public Not GetById(int id)
+        public Not TGetById(int id)
         {
             return _notDal.GetByID(id);
         }
