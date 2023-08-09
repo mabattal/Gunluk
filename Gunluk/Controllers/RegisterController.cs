@@ -3,10 +3,12 @@ using BusinessLayer.ValidationRules;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Gunluk.Controllers
 {
+    [AllowAnonymous]
     public class RegisterController : Controller
     {
         YazarManager yazarManager = new YazarManager(new EfYazarRepository());
