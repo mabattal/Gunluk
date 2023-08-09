@@ -56,5 +56,12 @@ namespace Gunluk.Controllers
             }
             return View();
         }
+
+        public IActionResult NotSil(int id)
+        {
+            var notValue = notManager.TGetById(id);
+            notManager.TDelete(notValue);
+            return RedirectToAction("Index");
+        }
     }
 }

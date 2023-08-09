@@ -23,7 +23,34 @@
             <td>@(((DateTime)item.Tarih).ToString("dd-MMM-yyyy"))</td>
             <td></td>
             <td><a href="/Not/NotOku/@item.Id" class="btn btn-primary">Detay</a></td>
-            <td><a href="/Not/NotSil/@item.Id" class="btn btn-danger">Sil</a></td>
+            <td>
+                <button class="btn btn-danger delete-button" data-id="@item.Id">Sil</button>
+            </td>
         </tr>
     }
 </table>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $(".delete-button").click(function () {
+                var id = $(this).data("id");
+                Swal.fire({
+                    title: "Emin misiniz?",
+                    text: "Bu notu silmek istediğinizden emin misiniz?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#d33",
+                    cancelButtonColor: "#3085d6",
+                    confirmButtonText: "Evet, sil!",
+                    cancelButtonText: "İptal"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Silme işlemi burada gerçekleştirilebilir.
+                        window.location.href = "/Not/NotSil/" + id;
+                    }
+                });
+            });
+        });
+    </script>
+}
