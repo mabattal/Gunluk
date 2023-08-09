@@ -1,0 +1,20 @@
+﻿@model EntityLayer.Concrete.Not
+@{
+    ViewData["Title"] = "NotEkle";
+    Layout = "~/Views/Shared/YazarLayout.cshtml";
+}
+
+<h1>Not Ekle</h1>
+<br />
+@using (Html.BeginForm("NotEkle", "Not", FormMethod.Post))
+{
+    @Html.Label("Başlık")
+    @Html.TextBoxFor(x => x.Konu, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Konu, "", new { @class = "text-danger" })
+    <br />
+    @Html.Label("İçerik")
+    @Html.TextAreaFor(x => x.Metin, 15, 3, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.Metin, "", new { @class = "text-danger" })
+    <br />
+    <button class="btn btn-success">Kaydet</button>
+}

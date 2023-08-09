@@ -15,11 +15,11 @@ namespace EntityLayer.Concrete
 
         [Column(TypeName = "Varchar")]
         [StringLength(50)]
-        public string Konu { get; set; }
+        public string? Konu { get; set; }
 
         [Column(TypeName = "Varchar")]
         [StringLength(2000)]
-        public string Metin { get; set; }
+        public string? Metin { get; set; }
         public DateTime Tarih { get; set; } = DateTime.Now;
         public bool NotSil { get; set; } = false;
 
