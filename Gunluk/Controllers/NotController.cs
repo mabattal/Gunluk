@@ -10,7 +10,7 @@ namespace Gunluk.Controllers
         NotManager notManager = new NotManager(new EfNotRepository());
         public IActionResult Index()
         {
-            List<Not> notListesi = notManager.GetNotListWithYazar();
+            List<Not> notListesi = notManager.GetNotListByYazar(2);
             var values = notListesi.Where(not => not.NotSil == false).ToList();
 
             return View(values);

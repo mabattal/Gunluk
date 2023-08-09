@@ -43,16 +43,3 @@ namespace Gunluk.Controllers
         }
     }
 }
-
-
-//List<Yazar> yazarListesi = yazarManager.GetListAll();
-//var dataValue = yazarListesi.Where(x => x.YazarSil == false && x.Mail == yazar.Mail && x.Sifre == yazar.Sifre).ToList();
-//if (dataValue != null)
-//{
-//    HttpContext.Session.SetString("username", yazar.Mail);
-//    return RedirectToAction("Index", "Not");
-//}
-//else
-//{
-//    return View();
-//}
