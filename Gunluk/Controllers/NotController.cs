@@ -28,12 +28,6 @@ namespace Gunluk.Controllers
             var values = notManager.GetNotById(id);
             return View(values);
         }
-        public IActionResult YazaraGoreNotListele(int id)
-        {
-            List<Not> notListesi = notManager.GetNotListByYazar(id);
-            var values = notListesi.Where(not => not.NotSil == false).ToList();
-            return View(values);
-        }
 
         [HttpGet]
         public IActionResult NotEkle()
@@ -69,7 +63,8 @@ namespace Gunluk.Controllers
         public IActionResult NotSil(int id)
         {
             var notValue = notManager.TGetById(id);
-            notManager.TDelete(notValue);
+            notValue.NotSil = true;
+            notManager.TUpdate(notValue);
             return RedirectToAction("Index");
         }
     }

@@ -12,14 +12,6 @@ namespace Gunluk.Controllers
     {
         YazarManager yazarManager = new YazarManager(new EfYazarRepository());
         
-        public IActionResult Index()
-        {
-            List<Yazar> yazarListesi = yazarManager.GetListAll();
-            var values = yazarListesi.Where(yazar => yazar.YazarSil == false).ToList();
-
-            return View(values);
-        }
-
         [HttpGet]
         public IActionResult YazarDuzenle()
         {
