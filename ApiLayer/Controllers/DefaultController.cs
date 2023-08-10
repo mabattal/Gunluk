@@ -24,5 +24,20 @@ namespace ApiLayer.Controllers
             context.SaveChanges();
             return Ok();
         }
+
+        [HttpGet("{id}")]
+        public IActionResult CalisanGetir(int id)
+        {
+            using var context = new Context();
+            var calisan = context.Calisans.Find(id);
+            if(calisan == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Ok(calisan);
+            }
+        }
     }
 }
