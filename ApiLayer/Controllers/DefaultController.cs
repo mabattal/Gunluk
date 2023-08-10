@@ -15,5 +15,14 @@ namespace ApiLayer.Controllers
             var values = context.Calisans.ToList();
             return Ok(values);
         }
+
+        [HttpPost]
+        public IActionResult CalisanEkle(Calisan calisan)
+        {
+            using var context = new Context();
+            context.Add(calisan);
+            context.SaveChanges();
+            return Ok();
+        }
     }
 }
