@@ -16,5 +16,6 @@ namespace DataAccessLayer.Concrete
         }
 
         public DbSet<Not> Nots { get; set; }
+        public DbSet<Yazar> Yazars { get; set; }
     }
 }

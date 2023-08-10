@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.ValidationRules;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
@@ -12,7 +13,11 @@ namespace Gunluk.Controllers
         NotManager notManager = new NotManager(new EfNotRepository());
         public IActionResult Index()
         {
-            List<Not> notListesi = notManager.GetNotListByYazar(1);
+            Context context = new Context();
+            var yazarMail = User.Identity.Name;
+            var yazarId = context.Yazars.Where(x => x.Mail == yazarMail).Select(y => y.YazarId).FirstOrDefault();
+
+            List<Not> notListesi = notManager.GetNotListByYazar(yazarId);
             var values = notListesi.Where(not => not.NotSil == false).ToList();
 
             return View(values);
@@ -43,7 +48,11 @@ namespace Gunluk.Controllers
             ValidationResult results = notValidator.Validate(not);
             if (results.IsValid)
             {
-                not.YazarId = 1;
+                Context context = new Context();
+                var yazarMail = User.Identity.Name;
+                var yazarId = context.Yazars.Where(x => x.Mail == yazarMail).Select(y => y.YazarId).FirstOrDefault();
+
+                not.YazarId = yazarId;
                 notManager.TInsert(not);
                 return RedirectToAction("Index", "Not");
             }

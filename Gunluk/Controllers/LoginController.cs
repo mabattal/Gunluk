@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Concrete;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authentication;
@@ -12,7 +13,7 @@ namespace Gunluk.Controllers
     public class LoginController : Controller
     {
         YazarManager yazarManager = new YazarManager(new EfYazarRepository());
-        
+
         public IActionResult Index()
         {
             return View();
@@ -21,9 +22,9 @@ namespace Gunluk.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(Yazar yazar)
         {
-            List<Yazar> yazarListesi = yazarManager.GetListAll();
-            var dataValue = yazarListesi.Where(x => x.YazarSil == false && x.Mail == yazar.Mail && x.Sifre == yazar.Sifre).ToList();
-            if(dataValue != null)
+            Context context = new Context();
+            var dataValue = context.Yazars.FirstOrDefault(x => x.YazarSil == false && x.Mail == yazar.Mail && x.Sifre == yazar.Sifre);
+            if (dataValue != null)
             {
                 var claims = new List<Claim>
                 {
