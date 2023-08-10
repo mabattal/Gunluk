@@ -6,28 +6,44 @@
 }
 
 
+<h2>Not Listesi</h2>
+<br />
+<form method="get" action="@Url.Action("Index", "Not")">
+    <div class="form-group">
+        <div class="input-group" style="max-width: 25%;">
+            <input type="date" id="tarih" name="tarih" value="@ViewBag.SelectedDate" class="form-control">
+            <div class="input-group-append">
+                <span class="input-group-text" style="margin-left: 10px;">&nbsp;</span>
+                <button type="submit" class="btn btn-warning">Filtrele</button>
+            </div>
+        </div>
+    </div>
+</form>
+
 <table class="table table-bordered">
-    <tr>
-        <th>#</th>
-        <th>Başlık</th>
-        <th>Tarih</th>
-        <th>Yazar</th>
-        <th>Detaylar</th>
-        <th>Sil</th>
-    </tr>
-    @foreach (var item in Model)
-    {
+    <thead>
         <tr>
-            <td>@item.Id</td>
-            <td>@item.Konu</td>
-            <td>@(((DateTime)item.Tarih).ToString("dd-MMM-yyyy"))</td>
-            <td></td>
-            <td><a href="/Not/NotOku/@item.Id" class="btn btn-primary">Detay</a></td>
-            <td>
-                <button class="btn btn-danger delete-button" data-id="@item.Id">Sil</button>
-            </td>
+            <th>Başlık</th>
+            <th>Tarih</th>
+            <th>Yazar</th>
+            <th>Detaylar</th>
+            <th>Sil</th>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Konu</td>
+                <td>@(((DateTime)item.Tarih).ToString("dd-MMM-yyyy"))</td>
+                <td></td>
+                <td><a href="/Not/NotOku/@item.Id" class="btn btn-primary">Detay</a></td>
+                <td>
+                    <button class="btn btn-danger delete-button" data-id="@item.Id">Sil</button>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
 
 @section Scripts {

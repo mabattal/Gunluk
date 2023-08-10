@@ -11,17 +11,25 @@ namespace Gunluk.Controllers
     public class NotController : Controller
     {
         NotManager notManager = new NotManager(new EfNotRepository());
-        public IActionResult Index()
+        public IActionResult Index(DateTime? tarih = null)
         {
+            if (!tarih.HasValue)
+            {
+                tarih = DateTime.Today; // Bugünün tarihi
+            }
+
+            ViewBag.SelectedDate = tarih?.ToString("yyyy-MM-dd");
+
             Context context = new Context();
             var yazarMail = User.Identity.Name;
             var yazarId = context.Yazars.Where(x => x.Mail == yazarMail).Select(y => y.YazarId).FirstOrDefault();
 
             List<Not> notListesi = notManager.GetNotListByYazar(yazarId);
-            var values = notListesi.Where(not => not.NotSil == false).ToList();
+            var values = notListesi.Where(not => not.NotSil == false && not.Tarih.Date == tarih.Value.Date).ToList();
 
             return View(values);
         }
+
 
         public IActionResult NotOku(int id)
         {
