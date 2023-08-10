@@ -39,5 +39,40 @@ namespace ApiLayer.Controllers
                 return Ok(calisan);
             }
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult CalisanSil(int id)
+        {
+            using var context = new Context();
+            var calisan = context.Calisans.Find(id);
+            if(calisan == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                context.Remove(calisan);
+                context.SaveChanges();
+                return Ok();
+            }
+        }
+
+        [HttpPut]
+        public IActionResult CalisanGuncelle(Calisan calisan)
+        {
+            using var context = new Context();
+            var cls = context.Find<Calisan>(calisan.Id);
+            if(cls == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                cls.Ad = calisan.Ad;
+                context.Update(cls);
+                context.SaveChanges();
+                return Ok();
+            }
+        }
     }
 }
