@@ -11,9 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLayer", "BusinessLa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{70B0B091-2B34-47BD-8640-60AC26046D66}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreLayer", "CoreLayer\CoreLayer.csproj", "{D9992338-5EC2-4790-9DB5-6BAD1582B336}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiLayer", "ApiLayer\ApiLayer.csproj", "{3722C32F-A46D-49DB-8A3F-9CFD9733E898}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiLayer", "ApiLayer\ApiLayer.csproj", "{3722C32F-A46D-49DB-8A3F-9CFD9733E898}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,10 +35,6 @@ Global
 		{70B0B091-2B34-47BD-8640-60AC26046D66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70B0B091-2B34-47BD-8640-60AC26046D66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70B0B091-2B34-47BD-8640-60AC26046D66}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D9992338-5EC2-4790-9DB5-6BAD1582B336}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D9992338-5EC2-4790-9DB5-6BAD1582B336}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D9992338-5EC2-4790-9DB5-6BAD1582B336}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D9992338-5EC2-4790-9DB5-6BAD1582B336}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3722C32F-A46D-49DB-8A3F-9CFD9733E898}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3722C32F-A46D-49DB-8A3F-9CFD9733E898}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3722C32F-A46D-49DB-8A3F-9CFD9733E898}.Release|Any CPU.ActiveCfg = Release|Any CPU
