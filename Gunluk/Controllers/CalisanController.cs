@@ -62,6 +62,17 @@ namespace Gunluk.Controllers
             }
             return View(class1);
         }
+
+        public async Task<IActionResult> CalisanSil(int id)
+        {
+            var httpClient = new HttpClient();
+            var responseMessage = await httpClient.DeleteAsync("https://localhost:7183/api/Default/" + id);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
     }
 
     public class Class1
