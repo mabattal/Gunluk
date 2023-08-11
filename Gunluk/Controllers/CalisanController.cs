@@ -35,6 +35,33 @@ namespace Gunluk.Controllers
             }
             return View(jsonCalisan);
         }
+        [HttpGet]
+        public async Task<IActionResult> CalisanDuzenle(int id)
+        {
+            var httpClient = new HttpClient();
+            var responseMessage = await httpClient.GetAsync("https://localhost:7183/api/Default/" + id);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var jsonCalisan = await responseMessage.Content.ReadAsStringAsync();
+                var values = JsonConvert.DeserializeObject<Class1>(jsonCalisan);
+                return View(values);
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CalisanDuzenle(Class1 class1)
+        {
+            var httpClient = new HttpClient();
+            var jsonCalisan = JsonConvert.SerializeObject(class1);
+            var content = new StringContent(jsonCalisan, Encoding.UTF8, "application/json");
+            var responseMessage = await httpClient.PutAsync("https://localhost:7183/api/Default", content);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return View(class1);
+        }
     }
 
     public class Class1

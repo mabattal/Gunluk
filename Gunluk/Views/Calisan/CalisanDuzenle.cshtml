@@ -1,0 +1,18 @@
+﻿@model Gunluk.Controllers.Class1
+@{
+    ViewData["Title"] = "CalisanDuzenle";
+    Layout = "~/Views/Shared/YazarLayout.cshtml";
+}
+
+<h2>Çalışan Düzenle</h2>
+<br />
+<form method="post">
+    <label>Id</label>
+    @Html.TextBoxFor(x => x.Id, new { @class = "form-control", @readonly = "readonly" })
+    <br />
+    <label>Ad Soyad</label>
+    @Html.TextBoxFor(x => x.Ad, new { @class = "form-control" })
+    <br />
+    <button type="submit" class="btn btn-gradient-success mr-2">Kaydet</button>
+</form>
+

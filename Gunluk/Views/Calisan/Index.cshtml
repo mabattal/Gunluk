@@ -21,7 +21,7 @@
             <tr>
                 <td>@item.Id</td>
                 <td>@item.Ad</td>
-                <td><a href="#" class="btn btn-primary">Güncelle</a></td>
+                <td><a href="/Calisan/CalisanDuzenle/@item.Id" class="btn btn-primary">Güncelle</a></td>
                 <td>
                     <button class="btn btn-danger delete-button" data-id="@item.Id">Sil</button>
                 </td>
@@ -30,7 +30,7 @@
     </tbody>
 </table>
 <br />
-<a href="/Calisan/CalisanEkle" class="btn btn-success">Yeni Kayıt</a>
+<a href="/Calisan/CalisanEkle" class="btn btn-gradient-info mr-2">Yeni Kayıt</a>
 
 @section Scripts {
     <script>
