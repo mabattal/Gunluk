@@ -15,13 +15,13 @@ namespace Gunluk.Controllers
         [HttpGet]
         public IActionResult YazarDuzenle()
         {
-            Context context = new Context();
-            var yazarMail = User.Identity.Name;
-            var yazarId = context.Yazars.Where(x => x.Mail == yazarMail).Select(y => y.YazarId).FirstOrDefault();
-            
-
-            var yazarValues = yazarManager.TGetById(yazarId);
-            return View(yazarValues);
+            var yazarIdClaim = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "YazarId");
+            if (yazarIdClaim != null && int.TryParse(yazarIdClaim.Value, out int yazarId))
+            {
+                var yazarValues = yazarManager.TGetById(yazarId);
+                return View(yazarValues);
+            }
+            return View();
         }
 
         [HttpPost]
