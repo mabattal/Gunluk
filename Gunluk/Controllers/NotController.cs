@@ -20,14 +20,15 @@ namespace Gunluk.Controllers
 
             ViewBag.SelectedDate = tarih?.ToString("yyyy-MM-dd");
 
-            Context context = new Context();
-            var yazarMail = User.Identity.Name;
-            var yazarId = context.Yazars.Where(x => x.Mail == yazarMail).Select(y => y.YazarId).FirstOrDefault();
+            var yazarIdClaim = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "YazarId");
+            if (yazarIdClaim != null && int.TryParse(yazarIdClaim.Value, out int yazarId))
+            {
+                List<Not> notListesi = notManager.GetNotListByYazar(yazarId);
+                var values = notListesi.Where(not => not.NotSil == false && not.Tarih.Date == tarih.Value.Date).ToList();
+                return View(values);
+            }
 
-            List<Not> notListesi = notManager.GetNotListByYazar(yazarId);
-            var values = notListesi.Where(not => not.NotSil == false && not.Tarih.Date == tarih.Value.Date).ToList();
-
-            return View(values);
+            return View();
         }
 
 
@@ -50,13 +51,13 @@ namespace Gunluk.Controllers
             ValidationResult results = notValidator.Validate(not);
             if (results.IsValid)
             {
-                Context context = new Context();
-                var yazarMail = User.Identity.Name;
-                var yazarId = context.Yazars.Where(x => x.Mail == yazarMail).Select(y => y.YazarId).FirstOrDefault();
-
-                not.YazarId = yazarId;
-                notManager.TInsert(not);
-                return RedirectToAction("Index", "Not");
+                var yazarIdClaim = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "YazarId");
+                if (yazarIdClaim != null && int.TryParse(yazarIdClaim.Value, out int yazarId))
+                {
+                    not.YazarId = yazarId;
+                    notManager.TInsert(not);
+                    return RedirectToAction("Index", "Not");
+                }                    
             }
             else
             {

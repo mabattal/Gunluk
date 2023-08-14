@@ -22,13 +22,14 @@ namespace Gunluk.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(Yazar yazar)
         {
-            Context context = new Context();
-            var dataValue = context.Yazars.FirstOrDefault(x => x.YazarSil == false && x.Mail == yazar.Mail && x.Sifre == yazar.Sifre);
-            if (dataValue != null)
+            var foundYazar = yazarManager.GetByLogin(yazar.Mail, yazar.Sifre);
+
+            if (foundYazar != null)
             {
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, yazar.Mail)
+                    new Claim(ClaimTypes.Name, yazar.Mail),
+                    new Claim("YazarId", foundYazar.YazarId.ToString()) // Yazar ID'sini ekleyin
                 };
 
                 var userIdentity = new ClaimsIdentity(claims, "a");
@@ -37,8 +38,29 @@ namespace Gunluk.Controllers
 
                 return RedirectToAction("Index", "Not");
             }
+
             return View();
         }
+
+        //public async Task<IActionResult> Index(Yazar yazar)
+        //{
+        //    Context context = new Context();
+        //    var dataValue = context.Yazars.FirstOrDefault(x => x.YazarSil == false && x.Mail == yazar.Mail && x.Sifre == yazar.Sifre);
+        //    if (dataValue != null)
+        //    {
+        //        var claims = new List<Claim>
+        //        {
+        //            new Claim(ClaimTypes.Name, yazar.Mail)
+        //        };
+
+        //        var userIdentity = new ClaimsIdentity(claims, "a");
+        //        ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(userIdentity);
+        //        await HttpContext.SignInAsync(claimsPrincipal);
+
+        //        return RedirectToAction("Index", "Not");
+        //    }
+        //    return View();
+        //}
 
         public async Task<IActionResult> Logout()
         {

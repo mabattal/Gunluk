@@ -9,6 +9,6 @@ namespace DataAccessLayer.Abstract
 {
     public interface IYazarDal : IGenericDal<Yazar>
     {
-
+        Yazar GetByLogin(string mail, string sifre);
     }
 }

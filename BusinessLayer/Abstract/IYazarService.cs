@@ -9,5 +9,6 @@ namespace BusinessLayer.Abstract
 {
     public interface IYazarService : IGenericService<Yazar>
     {
+        Yazar GetByLogin(string mail, string sifre);
     }
 }
