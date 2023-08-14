@@ -30,14 +30,11 @@ namespace ApiLayer.Controllers
         {
             using var context = new Context();
             var calisan = context.Calisans.Find(id);
-            if(calisan == null)
+            if (calisan == null)
             {
                 return NotFound();
             }
-            else
-            {
-                return Ok(calisan);
-            }
+            return Ok(calisan);
         }
 
         [HttpDelete("{id}")]
@@ -45,16 +42,13 @@ namespace ApiLayer.Controllers
         {
             using var context = new Context();
             var calisan = context.Calisans.Find(id);
-            if(calisan == null)
+            if (calisan == null)
             {
                 return NotFound();
             }
-            else
-            {
-                context.Remove(calisan);
-                context.SaveChanges();
-                return Ok();
-            }
+            context.Remove(calisan);
+            context.SaveChanges();
+            return Ok();
         }
 
         [HttpPut]
@@ -62,17 +56,14 @@ namespace ApiLayer.Controllers
         {
             using var context = new Context();
             var cls = context.Find<Calisan>(calisan.Id);
-            if(cls == null)
+            if (cls == null)
             {
                 return NotFound();
             }
-            else
-            {
-                cls.Ad = calisan.Ad;
-                context.Update(cls);
-                context.SaveChanges();
-                return Ok();
-            }
+            cls.Ad = calisan.Ad;
+            context.Update(cls);
+            context.SaveChanges();
+            return Ok();
         }
     }
 }

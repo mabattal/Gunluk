@@ -37,16 +37,13 @@ namespace Gunluk.Controllers
 
                 return RedirectToAction("Index", "Not");
             }
-            else
-            {
-                return View();
-            }
+            return View();
         }
 
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();
-            return RedirectToAction("Index", "Home"); 
+            return RedirectToAction("Index", "Home");
         }
     }
 }
