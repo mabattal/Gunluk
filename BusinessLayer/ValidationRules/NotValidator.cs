@@ -12,8 +12,8 @@ namespace BusinessLayer.ValidationRules
     {
         public NotValidator() 
         {
-            RuleFor(x => x.Konu).NotEmpty().WithMessage("Konu kısmı boş geçilemez")
-                .MaximumLength(50).WithMessage("Konu en fazla 50 karekter içermelidir");
+            RuleFor(x => x.Konu).NotEmpty().WithMessage("Başlık kısmı boş geçilemez")
+                .MaximumLength(50).WithMessage("Başlık en fazla 50 karekter içermelidir");
             RuleFor(x => x.Metin).NotEmpty().WithMessage("İçerik kısmı boş geçilemez")
                 .MaximumLength(2000).WithMessage("İçerik en fazla 2000 karekter içermelidir");
         }
