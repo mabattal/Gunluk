@@ -9,13 +9,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessLayer.EntityFramework
+namespace DataAccessLayer.Concrete.EntityFramework
 {
     public class EfNotRepository : GenericRepository<Not>, INotDal
     {
         public List<Not> GetListWithYazar()
         {
-            using(var context = new Context())
+            using (var context = new Context())
             {
                 return context.Nots.Include(x => x.Yazar).ToList();
             }
