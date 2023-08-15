@@ -5,37 +5,50 @@ using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System.Text;
 
 namespace Gunluk.Controllers
 {
     public class NotController : Controller
     {
         NotManager notManager = new NotManager(new EfNotRepository());
-        public IActionResult Index(DateTime? tarih = null)
+
+        public async Task<IActionResult> Index(DateTime? tarih = null)
         {
             if (!tarih.HasValue)
             {
                 tarih = DateTime.Today; // Bugünün tarihi
             }
-
             ViewBag.SelectedDate = tarih?.ToString("yyyy-MM-dd");
 
             var yazarIdClaim = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "YazarId");
             if (yazarIdClaim != null && int.TryParse(yazarIdClaim.Value, out int yazarId))
             {
-                List<Not> notListesi = notManager.GetNotListByYazar(yazarId);
-                var values = notListesi.Where(not => not.NotSil == false && not.Tarih.Date == tarih.Value.Date).ToList();
+                var httpClient = new HttpClient();
+                var responseMessage = await httpClient.GetAsync("https://localhost:7183/api/NotApi");
+                var jsonString = await responseMessage.Content.ReadAsStringAsync();
+                var notListesi = JsonConvert.DeserializeObject<List<Not>>(jsonString);
+
+                var values = notListesi.Where(not => not.Tarih.Date == tarih.Value.Date && not.YazarId == yazarId).ToList();
                 return View(values);
             }
 
             return View();
         }
 
-
-        public IActionResult NotOku(int id)
+        [HttpGet]
+        public async Task<IActionResult> NotOku(int id)
         {
-            var values = notManager.GetNotById(id);
-            return View(values);
+            var httpClient = new HttpClient();
+            var responseMessage = await httpClient.GetAsync("https://localhost:7183/api/NotApi/" + id);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var jsonCalisan = await responseMessage.Content.ReadAsStringAsync();
+                var values = JsonConvert.DeserializeObject<Not>(jsonCalisan);
+                return View(values);
+            }
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -45,36 +58,28 @@ namespace Gunluk.Controllers
         }
 
         [HttpPost]
-        public IActionResult NotEkle(Not not)
+        public async Task<IActionResult> NotEkle(Not not)
         {
-            NotValidator notValidator = new NotValidator();
-            ValidationResult results = notValidator.Validate(not);
-            if (results.IsValid)
+            var httpClient = new HttpClient();
+            var jsonCalisan = JsonConvert.SerializeObject(not);
+            StringContent content = new StringContent(jsonCalisan, Encoding.UTF8, "application/json");
+            var responseMessage = await httpClient.PostAsync("https://localhost:7183/api/NotApi", content);
+            if (responseMessage.IsSuccessStatusCode)
             {
-                var yazarIdClaim = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "YazarId");
-                if (yazarIdClaim != null && int.TryParse(yazarIdClaim.Value, out int yazarId))
-                {
-                    not.YazarId = yazarId;
-                    notManager.TInsert(not);
-                    return RedirectToAction("Index", "Not");
-                }                    
+                return RedirectToAction("Index");
             }
-            else
-            {
-                foreach (var item in results.Errors)
-                {
-                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
-                }
-            }
-            return View();
+            return View(jsonCalisan);
         }
 
-        public IActionResult NotSil(int id)
+        public async Task<IActionResult> NotSil(int id)
         {
-            var notValue = notManager.TGetById(id);
-            notValue.NotSil = true;
-            notManager.TUpdate(notValue);
-            return RedirectToAction("Index");
+            var httpClient = new HttpClient();
+            var responseMessage = await httpClient.DeleteAsync("https://localhost:7183/api/NotApi/" + id);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
         }
     }
 }

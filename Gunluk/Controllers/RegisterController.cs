@@ -4,7 +4,10 @@ using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System.Text;
 
 namespace Gunluk.Controllers
 {
@@ -20,24 +23,17 @@ namespace Gunluk.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(Yazar yazar)
+        public async Task<IActionResult> Index(Yazar yazar)
         {
-            YazarValidator yazarValidator = new YazarValidator();
-            ValidationResult results = yazarValidator.Validate(yazar);
-            if(results.IsValid)
+            var httpClient = new HttpClient();
+            var jsonYazar = JsonConvert.SerializeObject(yazar);
+            StringContent content = new StringContent(jsonYazar, Encoding.UTF8, "application/json");
+            var responseMessage = await httpClient.PostAsync("https://localhost:7183/api/RegisterApi", content);
+            if (responseMessage.IsSuccessStatusCode)
             {
-                yazarManager.TInsert(yazar);
                 return RedirectToAction("Index", "Not");
-            }
-            else
-            {
-                foreach (var item in results.Errors)
-                {
-                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
-                }
-            }
-            return View();
-            
+            }            
+            return View(jsonYazar);
         }
     }
 }

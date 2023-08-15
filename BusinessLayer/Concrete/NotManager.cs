@@ -35,7 +35,7 @@ namespace BusinessLayer.Concrete
 
         public List<Not> GetNotListByYazar(int id)
         {
-            return _notDal.GetListAll(x =>x.YazarId == id);
+            return _notDal.GetListAll(x =>x.YazarId == id).Where(not => not.NotSil == false).ToList();
         }
 
         public List<Not> GetNotListWithYazar()

@@ -5,14 +5,15 @@ using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Security.Claims;
+using System.Text;
 
 namespace Gunluk.Controllers
 {
     [AllowAnonymous]
     public class LoginController : Controller
     {
-        YazarManager yazarManager = new YazarManager(new EfYazarRepository());
 
         public IActionResult Index()
         {
@@ -22,24 +23,17 @@ namespace Gunluk.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(Yazar yazar)
         {
-            var foundYazar = yazarManager.GetByLogin(yazar.Mail, yazar.Sifre);
-
-            if (foundYazar != null)
+            var httpClient = new HttpClient();
+            var jsonCalisan = JsonConvert.SerializeObject(yazar);
+            StringContent content = new StringContent(jsonCalisan, Encoding.UTF8, "application/json");
+            var responseMessage = await httpClient.PostAsync("https://localhost:7183/api/LoginApi", content);
+            if (responseMessage.IsSuccessStatusCode)
             {
-                var claims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.Name, yazar.Mail),
-                    new Claim("YazarId", foundYazar.YazarId.ToString())
-                };
-
-                var userIdentity = new ClaimsIdentity(claims, "a");
-                ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(userIdentity);
-                await HttpContext.SignInAsync(claimsPrincipal);
-
-                return RedirectToAction("Index", "Not");
+                return RedirectToAction("Index");
             }
-            return View();
+            return View(jsonCalisan);
         }
+
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();
