@@ -1,7 +1,4 @@
-﻿using BusinessLayer.Concrete;
-using BusinessLayer.ValidationRules;
-using DataAccessLayer.Concrete;
-using DataAccessLayer.Concrete.EntityFramework;
+﻿using BusinessLayer.ValidationRules;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
@@ -12,8 +9,6 @@ namespace Gunluk.Controllers
 {
     public class YazarController : Controller
     {
-        YazarManager yazarManager = new YazarManager(new EfYazarRepository());
-        
         [HttpGet]
         public async Task<IActionResult> YazarDuzenle()
         {
@@ -25,7 +20,7 @@ namespace Gunluk.Controllers
                 if (responseMessage.IsSuccessStatusCode)
                 {
                     var jsonCalisan = await responseMessage.Content.ReadAsStringAsync();
-                    var values = JsonConvert.DeserializeObject<Class1>(jsonCalisan);
+                    var values = JsonConvert.DeserializeObject<Yazar>(jsonCalisan);
                     return View(values);
                 }
             }

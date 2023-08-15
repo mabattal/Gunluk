@@ -1,12 +1,9 @@
-﻿using BusinessLayer.Concrete;
-using DataAccessLayer.Concrete;
-using DataAccessLayer.Concrete.EntityFramework;
+﻿
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using System.Security.Claims;
 using System.Text;
 
 namespace Gunluk.Controllers
@@ -14,7 +11,6 @@ namespace Gunluk.Controllers
     [AllowAnonymous]
     public class LoginController : Controller
     {
-
         public IActionResult Index()
         {
             return View();
@@ -31,7 +27,7 @@ namespace Gunluk.Controllers
             {
                 return RedirectToAction("Index");
             }
-            return View(jsonCalisan);
+            return View();
         }
 
         public async Task<IActionResult> Logout()

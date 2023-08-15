@@ -1,10 +1,5 @@
-﻿using BusinessLayer.Concrete;
-using BusinessLayer.ValidationRules;
-using DataAccessLayer.Concrete.EntityFramework;
-using EntityLayer.Concrete;
-using FluentValidation.Results;
+﻿using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
@@ -14,8 +9,6 @@ namespace Gunluk.Controllers
     [AllowAnonymous]
     public class RegisterController : Controller
     {
-        YazarManager yazarManager = new YazarManager(new EfYazarRepository());
-
         [HttpGet]
         public IActionResult Index()
         {
