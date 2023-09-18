@@ -5,6 +5,8 @@ using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System.Text;
 
 namespace Gunluk.Controllers
 {
@@ -13,35 +15,41 @@ namespace Gunluk.Controllers
         YazarManager yazarManager = new YazarManager(new EfYazarRepository());
         
         [HttpGet]
-        public IActionResult YazarDuzenle()
+        public async Task<IActionResult> YazarDuzenle()
         {
-            var yazarIdClaim = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "YazarId");
-            if (yazarIdClaim != null && int.TryParse(yazarIdClaim.Value, out int yazarId))
+            var yazarId = HttpContext.Session.GetInt32("YazarId");
+            if (yazarId != null)
             {
-                var yazarValues = yazarManager.TGetById(yazarId);
-                return View(yazarValues);
+                var httpClient = new HttpClient();
+                var responseMessage = await httpClient.GetAsync("https://localhost:44346/api/YazarApi/" + yazarId);
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    var jsonCalisan = await responseMessage.Content.ReadAsStringAsync();
+                    var values = JsonConvert.DeserializeObject<Yazar>(jsonCalisan);
+                    return View(values);
+                }
             }
             return View();
         }
 
         [HttpPost]
-        public IActionResult YazarDuzenle(Yazar yazar)
+        public async Task<IActionResult> YazarDuzenle(Yazar yazar)
         {
             YazarValidator yazarValidator = new YazarValidator();
             ValidationResult results = yazarValidator.Validate(yazar);
             if (results.IsValid)
             {
-                yazarManager.TUpdate(yazar);
-                return RedirectToAction("Index", "Not");
-            }
-            else
-            {
-                foreach (var item in results.Errors)
+                var httpClient = new HttpClient();
+                var jsonCalisan = JsonConvert.SerializeObject(yazar);
+                var content = new StringContent(jsonCalisan, Encoding.UTF8, "application/json");
+                var responseMessage = await httpClient.PutAsync("https://localhost:44346/api/YazarApi", content);
+                if (responseMessage.IsSuccessStatusCode)
                 {
-                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                    return RedirectToAction("Index", "Not");
                 }
-                return View();
-            }
+                return View(yazar);
+            }                
+            return View();
         }
     }
 }

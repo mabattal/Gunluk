@@ -5,44 +5,62 @@ using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System.Net.Http;
 using System.Security.Claims;
+using System.Text;
 
 namespace Gunluk.Controllers
 {
     [AllowAnonymous]
     public class LoginController : Controller
     {
-        YazarManager yazarManager = new YazarManager(new EfYazarRepository());
 
+        private readonly IHttpClientFactory _httpClientFactory;
+
+        public LoginController(IHttpClientFactory httpClientFactory)
+        {
+            _httpClientFactory = httpClientFactory;
+        }
+
+
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
 
-        [HttpPost]
+
         public async Task<IActionResult> Index(Yazar yazar)
         {
-            var foundYazar = yazarManager.GetByLogin(yazar.Mail, yazar.Sifre);
+            string url = yazar.Mail;
 
-            if (foundYazar != null)
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.GetAsync($"https://localhost:44346/api/LoginApi/{url}");
+            if (responseMessage.IsSuccessStatusCode)
             {
-                var claims = new List<Claim>
+                var jsondata = await responseMessage.Content.ReadAsStringAsync();
+                var values = JsonConvert.DeserializeObject<Yazar>(jsondata);
+                if (values != null)
                 {
-                    new Claim(ClaimTypes.Name, yazar.Mail),
-                    new Claim("YazarId", foundYazar.YazarId.ToString())
-                };
 
-                var userIdentity = new ClaimsIdentity(claims, "a");
-                ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(userIdentity);
-                await HttpContext.SignInAsync(claimsPrincipal);
+                    if (values.Sifre == yazar.Sifre)
+                    {
 
-                return RedirectToAction("Index", "Not");
+                        HttpContext.Session.SetInt32("YazarId", values.YazarId); // YazarId'yi oturuma ekler
+
+                        return RedirectToAction("Index", "Not", new { id = values.YazarId });
+                    }
+                }
+                return View();
             }
             return View();
         }
+
         public async Task<IActionResult> Logout()
         {
-            await HttpContext.SignOutAsync();
+
+            HttpContext.Session.Clear();
             return RedirectToAction("Index", "Home");
         }
     }

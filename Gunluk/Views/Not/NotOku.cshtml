@@ -1,13 +1,10 @@
-﻿@model IEnumerable<EntityLayer.Concrete.Not>
+﻿@model EntityLayer.Concrete.Not
 @{
     ViewData["Title"] = "NotDetay";
     Layout = "~/Views/Shared/YazarLayout.cshtml";
 }
 
-    @foreach (var item in Model)
-    {
-
-        <h1>@item.Konu</h1>
-        <p>@item.Metin</p>
-        <p class="text-muted">Oluşturulma Tarihi: @item.Tarih.ToString("dd MMMM yyyy HH:mm:ss")</p>
-    }
+        <h1>@Model.Konu</h1>
+        <p>@Model.Metin</p>
+        <p class="text-muted">Oluşturulma Tarihi: @Model.Tarih.ToString("dd MMMM yyyy HH:mm:ss")</p>
+    

@@ -42,9 +42,9 @@ namespace BusinessLayer.Concrete
             _yazarDal.Update(yazar);
         }
 
-        public Yazar GetByLogin(string mail, string sifre)
+        public Yazar GetByLogin(string mail)
         {
-            return _yazarDal.GetByLogin(mail, sifre);
+            return _yazarDal.GetByLogin(mail);
         }
     }
 }
