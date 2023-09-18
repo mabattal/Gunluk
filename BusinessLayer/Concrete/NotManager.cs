@@ -28,14 +28,14 @@ namespace BusinessLayer.Concrete
             return _notDal.GetListAll();
         }
 
-        public List<Not> GetNotById(int id)
+        public Not GetNotById(int id)
         {
-            return _notDal.GetListAll(x => x.Id == id);
+            return _notDal.GetByID(id);
         }
 
         public List<Not> GetNotListByYazar(int id)
         {
-            return _notDal.GetListAll(x =>x.YazarId == id);
+            return _notDal.GetListAll(x =>x.YazarId == id).Where(not => not.NotSil == false).ToList();
         }
 
         public List<Not> GetNotListWithYazar()

@@ -13,9 +13,9 @@ namespace DataAccessLayer.Concrete.EntityFramework
     public class EfYazarRepository : GenericRepository<Yazar>, IYazarDal
     {
         Context context = new Context();
-        public Yazar GetByLogin(string mail, string sifre)
+        public Yazar GetByLogin(string mail)
         {
-            return context.Yazars.FirstOrDefault(x => x.YazarSil == false && x.Mail == mail && x.Sifre == sifre);
+            return context.Yazars.FirstOrDefault(x=>x.Mail == mail);
         }
     }
 }
