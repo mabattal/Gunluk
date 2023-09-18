@@ -31,7 +31,7 @@ namespace Gunluk.Controllers
             var responseMessage = await httpClient.PostAsync("https://localhost:44346/api/RegisterApi", content);
             if (responseMessage.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index", "Not");
+                return RedirectToAction("Index", "Login");
             }            
             return View(jsonYazar);
         }
