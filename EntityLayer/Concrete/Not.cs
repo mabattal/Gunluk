@@ -26,6 +26,7 @@ namespace EntityLayer.Concrete
         public int YazarId { get; set; }
         public Yazar? Yazar { get; set; }
 
+
     }
 
 
