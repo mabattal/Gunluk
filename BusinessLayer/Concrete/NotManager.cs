@@ -18,7 +18,7 @@ namespace BusinessLayer.Concrete
             _notDal = notDal;
         }
 
-        public Not TGetById(int id)
+        public Not GetById(int id)
         {
             return _notDal.GetByID(id);
         }
@@ -43,17 +43,17 @@ namespace BusinessLayer.Concrete
             return _notDal.GetListWithYazar();
         }
 
-        public void TDelete(Not not)
+        public void Delete(Not not)
         {
             _notDal.Delete(not);
         }
 
-        public void TInsert(Not not)
+        public void Insert(Not not)
         {
             _notDal.Insert(not);
         }
 
-        public void TUpdate(Not not)
+        public void Update(Not not)
         {
             _notDal.Update(not);
         }

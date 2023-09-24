@@ -20,7 +20,7 @@ namespace ApiLayer.Controllers
             ValidationResult results = yazarValidator.Validate(yazar);
             if (results.IsValid)
             {
-                yazarManager.TInsert(yazar);
+                yazarManager.Insert(yazar);
                 return Ok();
             }
             else

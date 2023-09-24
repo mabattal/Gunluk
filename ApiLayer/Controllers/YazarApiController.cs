@@ -17,7 +17,7 @@ namespace ApiLayer.Controllers
         [HttpGet("{id}")]
         public IActionResult YazarGuncelle(int id)
         {
-            var values = yazarManager.TGetById(id);
+            var values = yazarManager.GetById(id);
             return Ok(values);
         }
 
@@ -28,7 +28,7 @@ namespace ApiLayer.Controllers
             ValidationResult results = yazarValidator.Validate(yazar);
             if (results.IsValid)
             {
-                yazarManager.TUpdate(yazar);
+                yazarManager.Update(yazar);
                 return Ok();
             }
             return NotFound();

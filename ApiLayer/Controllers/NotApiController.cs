@@ -46,7 +46,7 @@ namespace ApiLayer.Controllers
             if (results.IsValid)
             {
                 
-                    notManager.TInsert(not);
+                    notManager.Insert(not);
                     return Ok();
                 
             }
@@ -56,9 +56,9 @@ namespace ApiLayer.Controllers
         [HttpDelete("{id}")]
         public IActionResult NotSil(int id)
         {
-            var notValue = notManager.TGetById(id);
+            var notValue = notManager.GetById(id);
             notValue.NotSil = true;
-            notManager.TUpdate(notValue);
+            notManager.Update(notValue);
             return Ok();
         }
     }

@@ -17,7 +17,7 @@ namespace BusinessLayer.Concrete
         {
             _yazarDal = yazarDal;
         }
-        public Yazar TGetById(int id)
+        public Yazar GetById(int id)
         {
             return _yazarDal.GetByID(id);
         }
@@ -27,17 +27,17 @@ namespace BusinessLayer.Concrete
             return _yazarDal.GetListAll();
         }
 
-        public void TDelete(Yazar yazar)
+        public void Delete(Yazar yazar)
         {
             _yazarDal.Delete(yazar);
         }
 
-        public void TInsert(Yazar yazar)
+        public void Insert(Yazar yazar)
         {
             _yazarDal.Insert(yazar);
         }
 
-        public void TUpdate(Yazar yazar)
+        public void Update(Yazar yazar)
         {
             _yazarDal.Update(yazar);
         }
