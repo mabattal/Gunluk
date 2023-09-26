@@ -1,11 +1,15 @@
+using BusinessLayer.ValidationRules;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddFluentValidation();
 
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
@@ -15,23 +19,12 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
-//builder.Services.AddMvc(
-//    config =>
-//{
-//    var policy = new AuthorizationPolicyBuilder()
-//    .RequireAuthenticatedUser()
-//    .Build();
-//    config.Filters.Add(new AuthorizeFilter(policy));
-//}
-//);
+
 builder.Services.AddHttpClient();
 builder.Services.AddMvc();
-//builder.Services.AddAuthentication(
-//    CookieAuthenticationDefaults.AuthenticationScheme)
-//    .AddCookie(x =>
-//    {
-//        x.LoginPath = "/Login/Index";
-//    });
+
+builder.Services.AddValidatorsFromAssemblyContaining<WriterValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<NoteValidator>();
 
 var app = builder.Build();
 

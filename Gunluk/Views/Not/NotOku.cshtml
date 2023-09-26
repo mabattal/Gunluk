@@ -1,10 +1,10 @@
-﻿@model EntityLayer.Concrete.Not
+﻿@model EntityLayer.Concrete.Note
 @{
     ViewData["Title"] = "NotDetay";
     Layout = "~/Views/Shared/YazarLayout.cshtml";
 }
 
-        <h1>@Model.Konu</h1>
-        <p>@Model.Metin</p>
-        <p class="text-muted">Oluşturulma Tarihi: @Model.Tarih.ToString("dd MMMM yyyy HH:mm:ss")</p>
+        <h1>@Model.Title</h1>
+        <p>@Model.Text</p>
+        <p class="text-muted">Oluşturulma Tarihi: @Model.CreatedDate.ToString("dd MMMM yyyy HH:mm:ss")</p>
     

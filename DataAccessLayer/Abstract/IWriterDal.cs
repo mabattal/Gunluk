@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessLayer.Abstract
+namespace DataAccessLayer.Abstract
 {
-    public interface IYazarService : IGenericService<Yazar>
+    public interface IWriterDal : IGenericDal<Writer>
     {
-        Yazar GetByLogin(string mail);
+        Writer GetByLogin(string writer);
+
     }
 }

@@ -14,23 +14,23 @@ namespace ApiLayer.Controllers
         YazarManager yazarManager = new YazarManager(new EfYazarRepository());
 
         [HttpPost]
-        public IActionResult Index(Yazar yazar)
+        public IActionResult Index(Writer writer)
         {
-            YazarValidator yazarValidator = new YazarValidator();
-            ValidationResult results = yazarValidator.Validate(yazar);
-            if (results.IsValid)
-            {
-                yazarManager.Insert(yazar);
+            //WriterValidator yazarValidator = new WriterValidator();
+            //ValidationResult results = yazarValidator.Validate(writer);
+            //if (results.IsValid)
+            //{
+                yazarManager.Insert(writer);
                 return Ok();
-            }
-            else
-            {
-                foreach (var item in results.Errors)
-                {
-                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
-                }
-            }
-            return NotFound();
+            //}
+            //else
+            //{
+            //    foreach (var item in results.Errors)
+            //    {
+            //        ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+            //    }
+            //}
+            //return NotFound();
         }
     }
 }

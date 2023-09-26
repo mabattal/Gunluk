@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.ValidationRules
 {
-    public class NotValidator : AbstractValidator<Not>
+    public class NoteValidator : AbstractValidator<Note>
     {
-        public NotValidator() 
+        public NoteValidator() 
         {
-            RuleFor(x => x.Konu).NotEmpty().WithMessage("Başlık kısmı boş geçilemez")
+            RuleFor(x => x.Title).NotEmpty().WithMessage("Başlık kısmı boş geçilemez")
                 .MaximumLength(50).WithMessage("Başlık en fazla 50 karekter içermelidir");
-            RuleFor(x => x.Metin).NotEmpty().WithMessage("İçerik kısmı boş geçilemez")
+            RuleFor(x => x.Text).NotEmpty().WithMessage("İçerik kısmı boş geçilemez")
                 .MaximumLength(2000).WithMessage("İçerik en fazla 2000 karekter içermelidir");
         }
     }

@@ -22,13 +22,13 @@ namespace ApiLayer.Controllers
         }
 
         [HttpPut]
-        public IActionResult YazarGuncelle(Yazar yazar)
+        public IActionResult YazarGuncelle(Writer writer)
         {
-            YazarValidator yazarValidator = new YazarValidator();
-            ValidationResult results = yazarValidator.Validate(yazar);
+            WriterValidator yazarValidator = new WriterValidator();
+            ValidationResult results = yazarValidator.Validate(writer);
             if (results.IsValid)
             {
-                yazarManager.Update(yazar);
+                yazarManager.Update(writer);
                 return Ok();
             }
             return NotFound();

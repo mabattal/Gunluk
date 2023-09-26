@@ -24,8 +24,8 @@ namespace ApiLayer.Controllers
 
             if (yazarId != null)
             {
-                List<Not> notListesi = notManager.GetNotListByYazar(yazarId);
-                var values = notListesi.Where(not => not.NotSil == false && not.Tarih.Date == tarih.Value.Date).ToList();
+                List<Note> notListesi = notManager.GetNoteListByWriter(yazarId);
+                var values = notListesi.Where(x => x.NoteDelete == false && x.CreatedDate.Date == tarih.Value.Date).ToList();
                 return Ok(values);
             }
             return NotFound();
@@ -34,19 +34,19 @@ namespace ApiLayer.Controllers
         [HttpGet("{id}")]
         public IActionResult NotOku(int id)
         {
-            var values = notManager.GetNotById(id);
+            var values = notManager.GetNoteById(id);
             return Ok(values);
         }
 
         [HttpPost]
-        public IActionResult NotEkle(Not not)
+        public IActionResult NotEkle(Note note)
         {
-            NotValidator notValidator = new NotValidator();
-            ValidationResult results = notValidator.Validate(not);
+            NoteValidator notValidator = new NoteValidator();
+            ValidationResult results = notValidator.Validate(note);
             if (results.IsValid)
             {
                 
-                    notManager.Insert(not);
+                    notManager.Insert(note);
                     return Ok();
                 
             }
@@ -57,7 +57,7 @@ namespace ApiLayer.Controllers
         public IActionResult NotSil(int id)
         {
             var notValue = notManager.GetById(id);
-            notValue.NotSil = true;
+            notValue.NoteDelete = true;
             notManager.Update(notValue);
             return Ok();
         }

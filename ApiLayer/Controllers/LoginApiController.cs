@@ -11,6 +11,7 @@ namespace ApiLayer.Controllers
     [ApiController]
     public class LoginApiController : ControllerBase
     {
+        private readonly YazarManager _yazarManager;
         YazarManager yazarManager = new YazarManager(new EfYazarRepository());
 
         [HttpGet("{yazar}")]

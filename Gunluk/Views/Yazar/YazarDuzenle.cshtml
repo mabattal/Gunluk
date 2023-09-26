@@ -1,4 +1,4 @@
-﻿@model EntityLayer.Concrete.Yazar
+﻿@model EntityLayer.Concrete.Writer
 @{
     ViewData["Title"] = "YazarDuzenle";
     Layout = "~/Views/Shared/YazarLayout.cshtml";
@@ -13,16 +13,16 @@
                 <h4 class="card-title">Yazar Düzenle</h4>
                 <br />
                 <form class="forms-sample">
-                    @Html.HiddenFor(x => x.YazarId, new { @class = "form-control" })
+                    @Html.HiddenFor(x => x.Id, new { @class = "form-control" })
                     <div class="form-group">
                         <label for="exampleInputName1">Ad</label>
-                        @Html.TextBoxFor(x => x.Ad, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x => x.Ad, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
                         <label for="exampleInputName1">Soyad</label>
-                        @Html.TextBoxFor(x => x.Soyad, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x => x.Soyad, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(x => x.Surname, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Surname, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail3">Mail</label>
@@ -31,8 +31,8 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword4">Şifre</label>
-                        @Html.PasswordFor(x => x.Sifre, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(x => x.Sifre, "", new { @class = "text-danger" })
+                        @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
                     </div>
                     <button type="submit" class="btn btn-gradient-success mr-2">Kaydet</button>
                 </form>

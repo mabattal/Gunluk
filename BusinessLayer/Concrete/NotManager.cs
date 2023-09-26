@@ -9,53 +9,53 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Concrete
 {
-    public class NotManager : INotService
+    public class NotManager : INoteService
     {
-        INotDal _notDal;
+        INoteDal _notDal;
 
-        public NotManager(INotDal notDal)
+        public NotManager(INoteDal notDal)
         {
             _notDal = notDal;
         }
 
-        public Not GetById(int id)
+        public Note GetById(int id)
         {
             return _notDal.GetByID(id);
         }
 
-        public List<Not> GetListAll()
+        public List<Note> GetListAll()
         {
             return _notDal.GetListAll();
         }
 
-        public Not GetNotById(int id)
+        public Note GetNoteById(int id)
         {
             return _notDal.GetByID(id);
         }
 
-        public List<Not> GetNotListByYazar(int id)
+        public List<Note> GetNoteListByWriter(int id)
         {
-            return _notDal.GetListAll(x =>x.YazarId == id).Where(not => not.NotSil == false).ToList();
+            return _notDal.GetListAll(x =>x.WriterId == id).Where(not => not.NoteDelete == false).ToList();
         }
 
-        public List<Not> GetNotListWithYazar()
+        public List<Note> GetNoteListWithWriter()
         {
-            return _notDal.GetListWithYazar();
+            return _notDal.GetListWithWriter();
         }
 
-        public void Delete(Not not)
+        public void Delete(Note note)
         {
-            _notDal.Delete(not);
+            _notDal.Delete(note);
         }
 
-        public void Insert(Not not)
+        public void Insert(Note note)
         {
-            _notDal.Insert(not);
+            _notDal.Insert(note);
         }
 
-        public void Update(Not not)
+        public void Update(Note note)
         {
-            _notDal.Update(not);
+            _notDal.Update(note);
         }
     }
 }

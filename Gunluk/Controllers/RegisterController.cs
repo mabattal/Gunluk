@@ -1,7 +1,9 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.ValidationRules;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer.Concrete;
+using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -14,7 +16,12 @@ namespace Gunluk.Controllers
     [AllowAnonymous]
     public class RegisterController : Controller
     {
-        YazarManager yazarManager = new YazarManager(new EfYazarRepository());
+        private readonly IValidator<Writer> _writerValidator;
+
+        public RegisterController(IValidator<Writer> writerValidator)
+        {
+            _writerValidator = writerValidator;
+        }
 
         [HttpGet]
         public IActionResult Index()
@@ -23,17 +30,21 @@ namespace Gunluk.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Index(Yazar yazar)
+        public async Task<IActionResult> Index(Writer writer)
         {
-            var httpClient = new HttpClient();
-            var jsonYazar = JsonConvert.SerializeObject(yazar);
-            StringContent content = new StringContent(jsonYazar, Encoding.UTF8, "application/json");
-            var responseMessage = await httpClient.PostAsync("https://localhost:44346/api/RegisterApi", content);
-            if (responseMessage.IsSuccessStatusCode)
+            var results = _writerValidator.Validate(writer);
+            if (results.IsValid) 
             {
-                return RedirectToAction("Index", "Login");
-            }            
-            return View(jsonYazar);
+                var httpClient = new HttpClient();
+                var jsonYazar = JsonConvert.SerializeObject(writer);
+                StringContent content = new StringContent(jsonYazar, Encoding.UTF8, "application/json");
+                var responseMessage = await httpClient.PostAsync("https://localhost:44346/api/RegisterApi", content);
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index", "Login");
+                }
+            }
+            return View();
         }
     }
 }

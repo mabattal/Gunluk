@@ -1,4 +1,4 @@
-﻿@model EntityLayer.Concrete.Yazar
+﻿@model EntityLayer.Concrete.Writer
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -11,13 +11,13 @@
         {
             <div class="mb-3">
                 <label for="ad" class="form-label">Ad:</label>
-                @Html.TextBoxFor(x => x.Ad, new { @class = "form-control" })
-                @Html.ValidationMessageFor(x => x.Ad, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
             </div>
             <div class="mb-3">
                 <label for="soyad" class="form-label">Soyad:</label>
-                @Html.TextBoxFor(x => x.Soyad, new { @class = "form-control" })
-                @Html.ValidationMessageFor(x => x.Soyad, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(x => x.Surname, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Surname, "", new { @class = "text-danger" })
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">E-posta:</label>
@@ -27,12 +27,12 @@
             <div class="mb-3">
                 <label for="sifre" class="form-label">Şifre:</label>
                 <div class="input-group">
-                    @Html.PasswordFor(x => x.Sifre, new { @class = "form-control", @id = "sifre" })
+                    @Html.PasswordFor(x => x.Password, new { @class = "form-control", @id = "sifre" })
                     <button class="btn btn-outline-secondary" type="button" id="showPassword">
                         <i class="fa fa-eye"></i>
                     </button>
                 </div>
-                @Html.ValidationMessageFor(x => x.Sifre, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
             </div>
 
             <div class="text-center">

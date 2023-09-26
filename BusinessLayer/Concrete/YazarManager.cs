@@ -9,40 +9,40 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Concrete
 {
-    public class YazarManager : IYazarService
+    public class YazarManager : IWriterService
     {
-        IYazarDal _yazarDal;
+        IWriterDal _yazarDal;
 
-        public YazarManager(IYazarDal yazarDal)
+        public YazarManager(IWriterDal yazarDal)
         {
             _yazarDal = yazarDal;
         }
-        public Yazar GetById(int id)
+        public Writer GetById(int id)
         {
             return _yazarDal.GetByID(id);
         }
 
-        public List<Yazar> GetListAll()
+        public List<Writer> GetListAll()
         {
             return _yazarDal.GetListAll();
         }
 
-        public void Delete(Yazar yazar)
+        public void Delete(Writer writer)
         {
-            _yazarDal.Delete(yazar);
+            _yazarDal.Delete(writer);
         }
 
-        public void Insert(Yazar yazar)
+        public void Insert(Writer writer)
         {
-            _yazarDal.Insert(yazar);
+            _yazarDal.Insert(writer);
         }
 
-        public void Update(Yazar yazar)
+        public void Update(Writer writer)
         {
-            _yazarDal.Update(yazar);
+            _yazarDal.Update(writer);
         }
 
-        public Yazar GetByLogin(string mail)
+        public Writer GetByLogin(string mail)
         {
             return _yazarDal.GetByLogin(mail);
         }

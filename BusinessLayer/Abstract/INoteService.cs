@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Abstract
 {
-    public interface INotService : IGenericService<Not>
+    public interface INoteService : IGenericService<Note>
     {
-        List<Not> GetNotListWithYazar();
-        List<Not> GetNotListByYazar(int id);
+        List<Note> GetNoteListWithWriter();
+        List<Note> GetNoteListByWriter(int id);
     }
 }

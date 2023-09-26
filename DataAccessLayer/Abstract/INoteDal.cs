@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Abstract
 {
-    public interface INotDal : IGenericDal<Not>
+    public interface INoteDal : IGenericDal<Note>
     {
-        List<Not> GetListWithYazar(); 
+        List<Note> GetListWithWriter(); 
     }
 }

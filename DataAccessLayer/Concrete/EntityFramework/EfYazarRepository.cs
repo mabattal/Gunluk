@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Concrete.EntityFramework
 {
-    public class EfYazarRepository : GenericRepository<Yazar>, IYazarDal
+    public class EfYazarRepository : GenericRepository<Writer>, IWriterDal
     {
         Context context = new Context();
-        public Yazar GetByLogin(string mail)
+        public Writer GetByLogin(string mail)
         {
-            return context.Yazars.FirstOrDefault(x=>x.Mail == mail);
+            return context.Writers.FirstOrDefault(x=>x.Mail == mail);
         }
     }
 }
